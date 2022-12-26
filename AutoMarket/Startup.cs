@@ -1,4 +1,6 @@
 using AutoMarket.Dal;
+using AutoMarket.Dal.Interfaces;
+using AutoMarket.Dal.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -27,6 +29,7 @@ namespace AutoMarket
             string connection = Configuration.GetConnectionString("DefaultConnection");
 
             services.AddControllersWithViews();
+            services.AddScoped<ICarRepository, CarRepository>();
 
             services.AddDbContext<ApplicationDbContext>(options =>
             {

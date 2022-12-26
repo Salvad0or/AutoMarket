@@ -1,4 +1,7 @@
-﻿using AutoMarket.Models;
+﻿using Automarket.Domain.Entity;
+using AutoMarket.Dal.Interfaces;
+using AutoMarket.Dal.Repositories;
+using AutoMarket.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -12,15 +15,22 @@ namespace AutoMarket.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly ICarRepository carRepository;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, ICarRepository _carRepository)
         {
             _logger = logger;
+            carRepository = _carRepository;
         }
+
+        
+
+        
 
         public IActionResult Index()
         {
-            return View();
+            var response = carRepository.Select();
+            return View(response);
         }
 
         public IActionResult Privacy()

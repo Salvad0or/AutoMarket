@@ -1,4 +1,6 @@
-﻿@{
+﻿@using Automarket.Domain.Entity;
+@model List<Car>
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -6,3 +8,14 @@
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
+
+<p>
+    @foreach (Car car in Model)
+    {
+        <p>@car.Name</p>
+        <p>@car.Price</p>
+        <p>@car.Model</p>
+        <p>@car.Description</p>
+    }
+
+</p>
