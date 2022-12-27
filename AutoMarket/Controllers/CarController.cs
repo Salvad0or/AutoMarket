@@ -1,20 +1,21 @@
-﻿using AutoMarket.Dal.Interfaces;
+﻿using Autimarket.Services.Interfaces;
+using AutoMarket.Dal.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AutoMarket.Controllers
 {
     public class CarController : Controller
     {
-        private readonly ICarRepository _carRepository;
+        private readonly ICarService _carService;
 
-        public CarController(ICarRepository carRepository)
+        public CarController(ICarService carService)
         {
-            _carRepository = carRepository;
+            _carService = carService;
         }
-        public IActionResult GetCarById()
+        public IActionResult GetCars()
         {
-
-            return View(_carRepository.Get(1));
+            var responce = _carService.GetAllCars();
+            return View(responce);
         }
     }
 }
