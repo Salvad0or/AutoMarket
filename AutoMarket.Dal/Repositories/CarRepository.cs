@@ -29,7 +29,7 @@ namespace AutoMarket.Dal.Repositories
 
         public Car Get(int id)
         {
-            throw new NotImplementedException();
+            return _db.Cars.FirstOrDefault(i => i.Id == id);
         }
 
         public Car GetByName(string name)
