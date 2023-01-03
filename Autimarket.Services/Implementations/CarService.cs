@@ -1,11 +1,15 @@
 ﻿using Autimarket.Services.Interfaces;
 using Automarket.Domain.Entity;
+using Automarket.Domain.Enum;
 using Automarket.Domain.Interfaces;
 using Automarket.Domain.Response;
+using Automarket.Domain.ViewModels.Car;
 using AutoMarket.Dal.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Xml.Linq;
 
 namespace Autimarket.Services.Implementations
 {
@@ -78,19 +82,77 @@ namespace Autimarket.Services.Implementations
 
                 if (baseResponse.Data is null)
                 {
-                    baseResponse.Descriprion = "UserNotFound";
-                    baseResponse.StatusCode = StatusCode.UserNotFoundException;
+                    baseResponse.Descriprion = "CarNotFoune";
+                    baseResponse.StatusCode = StatusCode.CarNotFound;
                 }
             }
             catch (Exception ex)
             {
 
-                baseResponse.Descriprion = $"[GetCarById] - {ex.Message}";
+                baseResponse.Descriprion = $"[GetCarByName] - {ex.Message}";
 
             }
 
             return baseResponse;
         }
 
+        public IBaseResponse<bool> DeleteCar(int id)
+        {
+            BaseResponse<bool> baseResponse = new BaseResponse<bool>();
+            try
+            {
+              
+                Car car = _carRepository.Get(id);
+
+                if (car is null)
+                {
+                    baseResponse.Descriprion = "UserNotFound";
+                    baseResponse.StatusCode = StatusCode.UserNotFoundException;
+                }
+
+                baseResponse.Data = _carRepository.Delete(car);
+
+            }
+            catch (Exception ex)
+            {
+
+                baseResponse.Descriprion = $"[DeleteCar] - {ex.Message}";
+            }
+            return baseResponse;
+
+        }
+
+        public IBaseResponse<CarViewModel> CreateCar(CarViewModel carViewModel)
+        {
+            BaseResponse<CarViewModel> baseResponse = new BaseResponse<CarViewModel>();
+
+            try
+            {
+                Car car = new Car
+                {
+                    Name = carViewModel.Name,
+                    Description = carViewModel.Description,
+                    Model = carViewModel.Model,
+                    Speed = carViewModel.Speed,
+                    Price = carViewModel.Price,
+                    TypeCar = (TypeCar)Convert.ToInt32(carViewModel.TypeCar),
+
+                };
+
+                _carRepository.Create(car);
+
+               
+            }
+            catch (Exception ex)
+            {
+                baseResponse.Descriprion = $"[CreateCar] - {ex.Message}";
+            }
+
+            return baseResponse;
+            
+        }
+
     }
+
+    
 }

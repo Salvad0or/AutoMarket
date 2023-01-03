@@ -24,7 +24,18 @@ namespace AutoMarket.Dal.Repositories
 
         public bool Delete(Car entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _db.Cars.Remove(entity);
+                _db.SaveChanges();
+                return true;
+
+            }
+            catch (Exception ex)
+            {
+
+                return false;
+            }
         }
 
         public Car Get(int id)

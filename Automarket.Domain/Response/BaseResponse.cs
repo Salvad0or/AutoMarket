@@ -15,6 +15,6 @@ namespace Automarket.Domain.Response
 
         public StatusCode StatusCode { get; set; } // код ошибки, если она будет
 
-        public T Data { get; set; }
+        public T Data { get; set; } // 
     }
 }
