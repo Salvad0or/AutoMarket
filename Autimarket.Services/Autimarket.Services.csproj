@@ -4,4 +4,9 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\AutoMarket.Dal\AutoMarket.Dal.csproj" />
+    <ProjectReference Include="..\Automarket.Domain\Automarket.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

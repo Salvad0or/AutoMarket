@@ -4,7 +4,9 @@ using System.Text;
 
 namespace Automarket.Domain.Response
 {
-    internal class StatusCode
+    public enum StatusCode
     {
+        Ok = 200,
+        InternalServerError = 500,
     }
 }

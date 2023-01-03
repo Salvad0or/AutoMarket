@@ -1,3 +1,4 @@
+using Autimarket.Services.Implementations;
 using Autimarket.Services.Interfaces;
 using AutoMarket.Dal;
 using AutoMarket.Dal.Interfaces;
@@ -31,7 +32,7 @@ namespace AutoMarket
 
             services.AddControllersWithViews();
             services.AddScoped<ICarRepository, CarRepository>();
-            services.AddScoped<ICarService, ICarService>(0);
+            services.AddScoped<ICarService, CarService>();
 
             services.AddDbContext<ApplicationDbContext>(options =>
             {
