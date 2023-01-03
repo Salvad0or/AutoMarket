@@ -6,8 +6,8 @@ using System.Text;
 
 namespace Autimarket.Services.Interfaces
 {
-    public interface ICarService 
+    public interface ICarService    
     {
-        IBaseResponse<IEnumerable<Car>> GetAllCars();
+        IBaseResponse<IEnumerable<Car>> GetCars();
     }
 }

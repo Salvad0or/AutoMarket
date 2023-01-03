@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Automarket.Domain.Response
+﻿namespace Automarket.Domain.Response
 {
     public enum StatusCode
     {
-        Ok = 200,
+        UserNotFoundException = 0,
+        CarNotFound = 1,
+        OK = 200,
         InternalServerError = 500,
+        
     }
 }

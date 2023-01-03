@@ -14,7 +14,7 @@ namespace AutoMarket.Controllers
         }
         public IActionResult GetCars()
         {
-            var responce = _carService.GetAllCars();
+            var responce = _carService.GetCars();
             return View(responce);
         }
     }
