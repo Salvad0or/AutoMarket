@@ -8,5 +8,7 @@ namespace AutoMarket.Dal.Interfaces
         T Get(int id);
         IEnumerable<T> Select();
         bool Delete(T entity);
+
+        void Update(T entity);
     }
 }

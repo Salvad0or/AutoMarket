@@ -58,5 +58,12 @@ namespace AutoMarket.Dal.Repositories
 
             return cars;
         }
+
+        public void Update(Car entity)
+        {
+            _db.Cars.Update(entity);
+
+            _db.SaveChanges();
+        }
     }
 }

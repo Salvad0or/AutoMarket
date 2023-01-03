@@ -152,6 +152,41 @@ namespace Autimarket.Services.Implementations
             
         }
 
+        public IBaseResponse<Car> Edit(int id, CarViewModel model)
+        {
+            BaseResponse<Car>baseResponse = new BaseResponse<Car>();
+
+            try
+            {
+                Car car = _carRepository.Get(id);
+
+                if (car is null)
+                {
+                    baseResponse.Descriprion = "Car not found";
+                    baseResponse.StatusCode = StatusCode.CarNotFound;
+                }
+
+
+                car.Description = model.Description;
+                car.Model = model.Model;
+                car.Price = model.Price;
+                car.Speed = model.Speed;
+                car.Name = model.Name;
+
+                //TypeCar
+
+                _carRepository.Update(car);
+            }
+            catch (Exception ex)
+            {
+
+                baseResponse.Descriprion = $"[Edit] - {ex.Message}";
+            }
+
+            return baseResponse;
+
+
+        }
     }
 
     
