@@ -1,9 +1,12 @@
 ﻿@using Automarket.Domain.Entity;
-@model Car
+@model IEnumerable<Car>
 
 @{
     ViewData["Title"] = "Home Page";
 }
 
-<p>@Model.Id</p>
-<p>@Model.Name</p>
+@foreach(Car car in Model)
+{
+    <p>@car.Id</p>
+    <p>@car.Name</p>
+}

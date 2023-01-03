@@ -1,6 +1,9 @@
 ﻿using Autimarket.Services.Interfaces;
-using AutoMarket.Dal.Interfaces;
+using Automarket.Domain.Entity;
+using Automarket.Domain.Interfaces;
+using Automarket.Domain.Response;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace AutoMarket.Controllers
 {
@@ -12,10 +15,19 @@ namespace AutoMarket.Controllers
         {
             _carService = carService;
         }
+
         public IActionResult GetCars()
         {
+
             var responce = _carService.GetCars();
-            return View(responce);
+
+            if (responce.StatusCode == Automarket.Domain.Response.StatusCode.OK)
+            {
+                return View(responce.Data);
+            }
+
+            return RedirectToAction("Error");
+            
         }
     }
 }
